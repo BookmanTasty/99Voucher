@@ -16,6 +16,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
+import net.miginfocom.swing.MigLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 public class Gui {
 
@@ -50,27 +53,37 @@ public class Gui {
 	private void initialize() {
 		frmvoucherGeneredorDe = new JFrame();
 		frmvoucherGeneredorDe.setTitle("99Voucher Generedor de fichas");
-		frmvoucherGeneredorDe.setBounds(100, 100, 320, 182);
+		frmvoucherGeneredorDe.setBounds(100, 100, 295, 165);
 		frmvoucherGeneredorDe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		SpringLayout springLayout = new SpringLayout();
-		frmvoucherGeneredorDe.getContentPane().setLayout(springLayout);
 		
 		JButton btnNewButton_1 = new JButton("Cargar CSV");
-		springLayout.putConstraint(SpringLayout.WEST, btnNewButton_1, 205, SpringLayout.WEST, frmvoucherGeneredorDe.getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton_1, -103, SpringLayout.SOUTH, frmvoucherGeneredorDe.getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, btnNewButton_1, -10, SpringLayout.EAST, frmvoucherGeneredorDe.getContentPane());
-		frmvoucherGeneredorDe.getContentPane().add(btnNewButton_1);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
+		JLabel lblNewLabel = new JLabel("Ruta del archivo CSV");
+		
+		JLabel lblNewLabel_1 = new JLabel("New label");
 		
 		JButton btnNewButton_2 = new JButton("Cargar PNG");
-		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton_2, 23, SpringLayout.SOUTH, btnNewButton_1);
-		springLayout.putConstraint(SpringLayout.WEST, btnNewButton_2, 0, SpringLayout.WEST, btnNewButton_1);
-		springLayout.putConstraint(SpringLayout.EAST, btnNewButton_2, -10, SpringLayout.EAST, frmvoucherGeneredorDe.getContentPane());
-		frmvoucherGeneredorDe.getContentPane().add(btnNewButton_2);
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		
-		JButton btnNewButton = new JButton("New button");
-		springLayout.putConstraint(SpringLayout.WEST, btnNewButton, 0, SpringLayout.WEST, btnNewButton_1);
-		springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton, -10, SpringLayout.SOUTH, frmvoucherGeneredorDe.getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, btnNewButton, -10, SpringLayout.EAST, frmvoucherGeneredorDe.getContentPane());
-		frmvoucherGeneredorDe.getContentPane().add(btnNewButton);
+		JLabel lblNewLabel_2 = new JLabel("Ruta del archivo PNG");
+		
+		JLabel lblNewLabel_1_1 = new JLabel("New label");
+		
+		JButton btnNewButton = new JButton("Generar Fichas");
+		frmvoucherGeneredorDe.getContentPane().setLayout(new MigLayout("", "[89px][6px][101px]", "[23px][14px][23px][14px][23px]"));
+		frmvoucherGeneredorDe.getContentPane().add(btnNewButton_1, "cell 0 0,alignx right,aligny top");
+		frmvoucherGeneredorDe.getContentPane().add(lblNewLabel, "cell 2 0,alignx left,aligny center");
+		frmvoucherGeneredorDe.getContentPane().add(lblNewLabel_1, "cell 2 1,alignx left,aligny top");
+		frmvoucherGeneredorDe.getContentPane().add(btnNewButton_2, "cell 0 2,alignx left,aligny top");
+		frmvoucherGeneredorDe.getContentPane().add(lblNewLabel_2, "cell 2 2,alignx left,aligny center");
+		frmvoucherGeneredorDe.getContentPane().add(lblNewLabel_1_1, "cell 2 3,alignx left,aligny top");
+		frmvoucherGeneredorDe.getContentPane().add(btnNewButton, "cell 0 4 3 1,alignx right,aligny top");
 	}
 }
