@@ -19,6 +19,14 @@ import javax.swing.SwingConstants;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.FormSpecs;
+import com.jgoodies.forms.layout.RowSpec;
+import javax.swing.JPanel;
+import javax.swing.JInternalFrame;
+import javax.swing.JLayeredPane;
+import javax.swing.JTabbedPane;
 
 public class Gui {
 
@@ -44,46 +52,25 @@ public class Gui {
 	 * Create the application.
 	 */
 	public Gui() {
+		
 		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	public void initialize() {
+		String j = "hola";
 		frmvoucherGeneredorDe = new JFrame();
-		frmvoucherGeneredorDe.setTitle("99Voucher Generedor de fichas");
-		frmvoucherGeneredorDe.setBounds(100, 100, 295, 165);
-		frmvoucherGeneredorDe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmvoucherGeneredorDe.getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JButton btnNewButton_1 = new JButton("Cargar CSV");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		JButton btnNewButton = new JButton("New button");
+		frmvoucherGeneredorDe.getContentPane().add(btnNewButton);
 		
-		JLabel lblNewLabel = new JLabel("Ruta del archivo CSV");
+		JButton btnNewButton_1 = new JButton("New button");
+		frmvoucherGeneredorDe.getContentPane().add(btnNewButton_1);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		
-		JButton btnNewButton_2 = new JButton("Cargar PNG");
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		
-		JLabel lblNewLabel_2 = new JLabel("Ruta del archivo PNG");
-		
-		JLabel lblNewLabel_1_1 = new JLabel("New label");
-		
-		JButton btnNewButton = new JButton("Generar Fichas");
-		frmvoucherGeneredorDe.getContentPane().setLayout(new MigLayout("", "[89px][6px][101px]", "[23px][14px][23px][14px][23px]"));
-		frmvoucherGeneredorDe.getContentPane().add(btnNewButton_1, "cell 0 0,alignx right,aligny top");
-		frmvoucherGeneredorDe.getContentPane().add(lblNewLabel, "cell 2 0,alignx left,aligny center");
-		frmvoucherGeneredorDe.getContentPane().add(lblNewLabel_1, "cell 2 1,alignx left,aligny top");
-		frmvoucherGeneredorDe.getContentPane().add(btnNewButton_2, "cell 0 2,alignx left,aligny top");
-		frmvoucherGeneredorDe.getContentPane().add(lblNewLabel_2, "cell 2 2,alignx left,aligny center");
-		frmvoucherGeneredorDe.getContentPane().add(lblNewLabel_1_1, "cell 2 3,alignx left,aligny top");
-		frmvoucherGeneredorDe.getContentPane().add(btnNewButton, "cell 0 4 3 1,alignx right,aligny top");
+		JButton btnNewButton_2 = new JButton("New button");
+		frmvoucherGeneredorDe.getContentPane().add(btnNewButton_2);
 	}
 }
