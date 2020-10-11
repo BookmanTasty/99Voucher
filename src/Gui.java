@@ -17,15 +17,18 @@ import java.awt.Canvas;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import javax.swing.JProgressBar;
 
 public class gui {
 
 	private JFrame frmvouchersGeneradorDe;
-	private JTextField rutIMG;
-	private JTextField rutCSV;
 	//creamos las variables para manejar el png y el csv
 	String archIMG = null;
 	String archCSV = null;
+	String salCSV = null;
+	String rdyI = "No seleccionado"; 
+	String rdyC = "No seleccionado"; 
 
 	/**
 	 * Launch the application.
@@ -66,7 +69,11 @@ public class gui {
 		JButton genV = new JButton("Generar Fichas");
 		genV.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				selDIR();
 				generarIMG();
+				System.out.println(salCSV);
+				
+				
 			}
 		});
 		panel.add(genV);
@@ -78,14 +85,11 @@ public class gui {
 		loadIMG.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cargarIMG();
-				System.out.println(archIMG);
+
+				
 			}
 		});
 		panel_1.add(loadIMG);
-		
-		rutIMG = new JTextField();
-		panel_1.add(rutIMG);
-		rutIMG.setColumns(10);
 		
 		JButton loadCSV = new JButton("Cargar Usuarios");
 		loadCSV.addActionListener(new ActionListener() {
@@ -93,11 +97,14 @@ public class gui {
 				cargarCSV();
 			}
 		});
+		
+		JLabel lblSEL = new JLabel(rdyI);
+		panel_1.add(lblSEL);
 		panel_1.add(loadCSV);
 		
-		rutCSV = new JTextField();
-		panel_1.add(rutCSV);
-		rutCSV.setColumns(10);
+		
+		JLabel lblCSV = new JLabel(rdyC);
+		panel_1.add(lblCSV);
 		
 		Canvas canvas = new Canvas();
 		frmvouchersGeneradorDe.getContentPane().add(canvas, BorderLayout.CENTER);
@@ -117,6 +124,8 @@ public class gui {
 		if (returnValue == JFileChooser.APPROVE_OPTION) {
 			File selectedFile = jfc.getSelectedFile();		
 			archIMG = selectedFile.getAbsolutePath();
+			rdyI = "Seleccionado";
+			
 		}
 		
 		}
@@ -135,19 +144,37 @@ public class gui {
 		if (returnValue == JFileChooser.APPROVE_OPTION) {
 			File selectedFile = jfc.getSelectedFile();		
 			archCSV = selectedFile.getAbsolutePath();
+			rdyC = "Seleccionado";
 		}
+	}
+		private void selDIR() {
+			
+			
+			JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());	
+			jfc.setDialogTitle("Elija un directorio para guardar su archivo");
+			jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+			//jfc.setAcceptAllFileFilterUsed(false);
+			//FileNameExtensionFilter filtro = new FileNameExtensionFilter("Selecciona directorio", "PNG");
+			//jfc.addChoosableFileFilter(filtro);
+			
+			int returnValue = jfc.showSaveDialog(null);
+			// int returnValue = jfc.showSaveDialog(null); esta linea la utilizaremos en caso de querer grabar archivos
+
+			if (returnValue == JFileChooser.APPROVE_OPTION) {
+				File selectedFile = jfc.getSelectedFile();		
+				salCSV = selectedFile.getAbsolutePath();
+			}
 		
 		}
+		
 	private void generarIMG() {
-		if (archIMG != null && archCSV != null ){
-			PngGen.csvRead(archIMG, archCSV);
+		if (archIMG != null && archCSV != null && salCSV != null){
+			
+			PngGen.csvRead(archIMG, archCSV, salCSV);
 		}
 		else {
-			JOptionPane.showMessageDialog(null, "No se han seleccionado los archivos",  "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "No se han seleccionado los archivos o directorio de salida",  "Error", JOptionPane.ERROR_MESSAGE);
 		}
 		
 	}
 	}
-
-
-

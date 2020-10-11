@@ -11,7 +11,7 @@ import javax.imageio.ImageIO;
 
 public class PngGen {
 	
-	    public static void csvRead(String pngFile,  String csvFile) {
+	    public static void csvRead(String pngFile,  String csvFile, String salCSV) {
 	    	// creamos las variables para cargar el csv
 	        BufferedReader br = null;
 	        String line = "";
@@ -35,7 +35,7 @@ public class PngGen {
 	            System.out.println(vouchers[0].replace( '"', ' ') + vouchers[1]);
 	     //remplazamos los 
 	            j++;
-	            imgWrite (pngFile,vouchers[0],vouchers[1], j);
+	            imgWrite (pngFile,vouchers[0],vouchers[1], j, salCSV);
 	           
 	       
 	            }
@@ -47,8 +47,8 @@ public class PngGen {
 	        } catch (IOException e) {
 	            e.printStackTrace();
 	        } catch (java.lang.ArrayIndexOutOfBoundsException e) {
-	        	System.out.println("Se ah terminado de conertir el csv");
-	        	System.out.println("Se generaron " + j + " fichas del csv");  
+	        	System.out.println("Se ha terminado de convertir el csv");
+	        	System.out.println("Se generaron " + j + " fichas a partir del csv");  
 	        } finally {
 	            if (br != null) {
 	                try {
@@ -62,19 +62,20 @@ public class PngGen {
 	
 	    	
 	    
-	    public static void imgWrite(String imgFile, String usuario, String contra, int j  ){
+	    public static void imgWrite(String imgFile, String usuario, String contra, int j  ,String salDir){
 	       
 	    	try {
 	    	//agregamos el texto a la bufered image
 	    	Font font = new Font("Calibri", Font.BOLD, 62);
-	        BufferedImage bi = ImageIO.read(new File(imgFile));       
+	        BufferedImage bi = ImageIO.read(new File(imgFile));
+	        String dirPNG = salDir+"/";
 	        String outPng = "test" + j + ".png";
 	        Graphics g = bi.getGraphics();
 	        g.setFont(font);
 	        g.setColor(Color.BLACK);
 	        g.drawString(usuario.replace( '"', ' '), 270, 150);
 	        g.drawString(contra.replace( '"', ' '), 270, 300);
-	        ImageIO.write(bi, "png", new File(outPng));
+	        ImageIO.write(bi, "png", new File(dirPNG+outPng));
 	        bi = null;
 	    	 } catch (FileNotFoundException e) {
 	             e.printStackTrace();
@@ -85,6 +86,4 @@ public class PngGen {
 	    }
 		
 	}
-
-
 
