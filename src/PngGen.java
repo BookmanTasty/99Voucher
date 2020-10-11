@@ -11,16 +11,15 @@ import javax.imageio.ImageIO;
 
 public class PngGen {
 	
-	    public static void csvRead() {
+	    public static void csvRead(String pngFile,  String csvFile) {
 	    	// creamos las variables para cargar el csv
-	        String csvFile = "C:\\Users\\ghost\\eclipse-workspace\\99vouchers\\src\\userman.csv";
 	        BufferedReader br = null;
 	        String line = "";
 	     // usamos coma como separador
 	        String cvsSplitBy = ",";
 	        
-	     //creamos las variables para manejar el png
-	        String pngFile = "C:\\Users\\ghost\\eclipse-workspace\\99vouchers\\src\\Ficha1.png";
+	     
+
 	     //asignamos las variables para la salida y fuentes del png        
 	        int j = 0;     
 	        
