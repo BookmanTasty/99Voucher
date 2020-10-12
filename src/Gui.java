@@ -56,12 +56,14 @@ public class gui {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	public void initialize() {
 		frmvouchersGeneradorDe = new JFrame();
 		frmvouchersGeneradorDe.setTitle("99Vouchers Generador de Fichas");
 		frmvouchersGeneradorDe.setResizable(false);
 		frmvouchersGeneradorDe.setBounds(100, 100, 568, 302);
 		frmvouchersGeneradorDe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
 		
 		JPanel panel = new JPanel();
 		frmvouchersGeneradorDe.getContentPane().add(panel, BorderLayout.SOUTH);
@@ -81,34 +83,40 @@ public class gui {
 		JPanel panel_1 = new JPanel();
 		frmvouchersGeneradorDe.getContentPane().add(panel_1, BorderLayout.NORTH);
 		
+		JLabel lblSEL = new JLabel(rdyI);
+		JLabel lblCSV = new JLabel(rdyC);
+		
 		JButton loadIMG = new JButton("Cargar Plantilla");
 		loadIMG.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cargarIMG();
-
+				lblSEL.setText(rdyI);
 				
+						
 			}
 		});
-		panel_1.add(loadIMG);
+		
 		
 		JButton loadCSV = new JButton("Cargar Usuarios");
 		loadCSV.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cargarCSV();
+				lblCSV.setText(rdyC);
+				
 			}
 		});
 		
-		JLabel lblSEL = new JLabel(rdyI);
+		panel_1.add(loadIMG);
 		panel_1.add(lblSEL);
 		panel_1.add(loadCSV);
-		
-		
-		JLabel lblCSV = new JLabel(rdyC);
 		panel_1.add(lblCSV);
 		
-		Canvas canvas = new Canvas();
-		frmvouchersGeneradorDe.getContentPane().add(canvas, BorderLayout.CENTER);
+		
 	}
+	
+
+
+
 	private void cargarIMG() {
 		
 	
@@ -123,9 +131,8 @@ public class gui {
 
 		if (returnValue == JFileChooser.APPROVE_OPTION) {
 			File selectedFile = jfc.getSelectedFile();		
-			archIMG = selectedFile.getAbsolutePath();
-			rdyI = "Seleccionado";
-			
+			archIMG = selectedFile.getAbsolutePath();			
+			rdyI = "Seleccionado"; 
 		}
 		
 		}

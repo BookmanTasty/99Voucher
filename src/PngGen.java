@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 public class PngGen {
 	
@@ -47,8 +48,8 @@ public class PngGen {
 	        } catch (IOException e) {
 	            e.printStackTrace();
 	        } catch (java.lang.ArrayIndexOutOfBoundsException e) {
-	        	System.out.println("Se ha terminado de convertir el csv");
-	        	System.out.println("Se generaron " + j + " fichas a partir del csv");  
+	        	System.out.println("Se generaron " + j + " fichas a partir del csv");
+	        	JOptionPane.showMessageDialog (null, "Se generaron " + j + " fichas a partir del csv");
 	        } finally {
 	            if (br != null) {
 	                try {
