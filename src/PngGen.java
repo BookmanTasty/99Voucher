@@ -82,40 +82,26 @@ public class PngGen {
 	             e.printStackTrace();
 	         } catch (IOException e) {
 	             e.printStackTrace();
+	             
+	    }
+	    }
+	    
+	    public static BufferedImage  imgGENP(String imgFile,int euX, int euY, int cuX, int cuY,String fuePER,int fueTAM) throws IOException{
+		       
+	    	
+	    	//agregamos el texto a la bufered image para crear el preview
+	    	
+	    	Font font = new Font(fuePER, Font.BOLD, fueTAM);
+	        BufferedImage bi = ImageIO.read(new File(imgFile));
+	        Graphics g = bi.getGraphics();
+	        g.setFont(font);
+	        g.setColor(Color.BLACK);
+	        g.drawString("ElemploU", euX, euY);
+	        g.drawString("EjemploC", cuX, cuY);
+	    	return (bi);
+	    }
+	    
 
-	    }
-	    }
-	    
-	    public static BufferedImage  imgGENP(String imgFile) throws IOException{
-		       
-	    	
-	    	//agregamos el texto a la bufered image para crear el preview
-	    	
-	    	Font font = new Font("Calibri", Font.BOLD, 62);
-	        BufferedImage bi = ImageIO.read(new File(imgFile));
-	        Graphics g = bi.getGraphics();
-	        g.setFont(font);
-	        g.setColor(Color.BLACK);
-	        g.drawString("ElemploU", 270, 150);
-	        g.drawString("EjemploC", 270, 300);
-	    	return (bi);
-	    }
-	    
-	    	public static BufferedImage  imgGETC(String imgFile) throws IOException{
-		       
-	    	
-	    	//agregamos el texto a la bufered image para crear el preview
-	    	
-	    	Font font = new Font("Calibri", Font.BOLD, 62);
-	        BufferedImage bi = ImageIO.read(new File(imgFile));
-	        Graphics g = bi.getGraphics();
-	        g.setFont(font);
-	        g.setColor(Color.BLACK);
-	        g.drawString("ElemploU", 270, 150);
-	        g.drawString("EjemploC", 270, 300);
-	    	return (bi);
-	    }
-	    
 		
 	}
 
