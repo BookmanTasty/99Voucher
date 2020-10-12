@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 public class PngGen {
 	
-	    public static void csvRead(String pngFile,  String csvFile, String salCSV) {
+	    public static void csvRead(String pngFile,  String csvFile, String salCSV,int euX, int euY, int cuX, int cuY,String fuePER,int fueTAM) {
 	    	// creamos las variables para cargar el csv
 	        BufferedReader br = null;
 	        String line = "";
@@ -36,7 +36,7 @@ public class PngGen {
 	            System.out.println(vouchers[0].replace( '"', ' ') + vouchers[1]);
 	     //remplazamos los 
 	            j++;
-	            imgWrite (pngFile,vouchers[0],vouchers[1], j, salCSV);
+	            imgWrite (pngFile,vouchers[0],vouchers[1], j, salCSV, euX, euY, cuX, cuY, fuePER, fueTAM);
 	           
 	       
 	            }
@@ -63,19 +63,19 @@ public class PngGen {
 	
 	    	
 	    
-	    public static void imgWrite(String imgFile, String usuario, String contra, int j  ,String salDir){
+	    public static void imgWrite(String imgFile, String usuario, String contra, int j  ,String  salDir ,int euX, int euY, int cuX, int cuY,String fuePER,int fueTAM){
 	       
 	    	try {
 	    	//agregamos el texto a la bufered image
-	    	Font font = new Font("Calibri", Font.BOLD, 62);
+	    	Font font = new Font(fuePER, Font.BOLD, fueTAM);
 	        BufferedImage bi = ImageIO.read(new File(imgFile));
 	        String dirPNG = salDir+"/";
 	        String outPng = "test" + j + ".png";
 	        Graphics g = bi.getGraphics();
 	        g.setFont(font);
 	        g.setColor(Color.BLACK);
-	        g.drawString(usuario.replace( '"', ' '), 270, 150);
-	        g.drawString(contra.replace( '"', ' '), 270, 300);
+	        g.drawString(usuario.replace( '"', ' '), euX, euY);
+	        g.drawString(contra.replace( '"', ' '), cuX, cuY);
 	        ImageIO.write(bi, "png", new File(dirPNG+outPng));
 	        bi = null;
 	    	 } catch (FileNotFoundException e) {

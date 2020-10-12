@@ -452,7 +452,7 @@ public class gui {
 	private void generarIMG() {
 		if (archIMG != null && archCSV != null && salCSV != null){
 			
-			PngGen.csvRead(archIMG, archCSV, salCSV);
+			PngGen.csvRead(archIMG, archCSV, salCSV, perUX, perUY, perCX, perCY, fuePER, fueTAM);
 		}
 		else {
 			JOptionPane.showMessageDialog(null, "No se han seleccionado los archivos o directorio de salida",  "Error", JOptionPane.ERROR_MESSAGE);
