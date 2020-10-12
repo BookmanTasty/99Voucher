@@ -85,6 +85,37 @@ public class PngGen {
 
 	    }
 	    }
+	    
+	    public static BufferedImage  imgGENP(String imgFile) throws IOException{
+		       
+	    	
+	    	//agregamos el texto a la bufered image para crear el preview
+	    	
+	    	Font font = new Font("Calibri", Font.BOLD, 62);
+	        BufferedImage bi = ImageIO.read(new File(imgFile));
+	        Graphics g = bi.getGraphics();
+	        g.setFont(font);
+	        g.setColor(Color.BLACK);
+	        g.drawString("ElemploU", 270, 150);
+	        g.drawString("EjemploC", 270, 300);
+	    	return (bi);
+	    }
+	    
+	    	public static BufferedImage  imgGETC(String imgFile) throws IOException{
+		       
+	    	
+	    	//agregamos el texto a la bufered image para crear el preview
+	    	
+	    	Font font = new Font("Calibri", Font.BOLD, 62);
+	        BufferedImage bi = ImageIO.read(new File(imgFile));
+	        Graphics g = bi.getGraphics();
+	        g.setFont(font);
+	        g.setColor(Color.BLACK);
+	        g.drawString("ElemploU", 270, 150);
+	        g.drawString("EjemploC", 270, 300);
+	    	return (bi);
+	    }
+	    
 		
 	}
 

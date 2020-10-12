@@ -1,24 +1,26 @@
 import java.awt.EventQueue;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import javax.swing.filechooser.FileFilter;
+
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
+import java.awt.Color;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
-import javax.swing.JSplitPane;
-import java.awt.Canvas;
-import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
-import javax.swing.JProgressBar;
+import java.awt.FlowLayout;
+import java.awt.Component;
+
+
 
 public class gui {
 
@@ -29,6 +31,7 @@ public class gui {
 	String salCSV = null;
 	String rdyI = "No seleccionado"; 
 	String rdyC = "No seleccionado"; 
+	BufferedImage prevIMG;
 
 	/**
 	 * Launch the application.
@@ -60,15 +63,39 @@ public class gui {
 		frmvouchersGeneradorDe = new JFrame();
 		frmvouchersGeneradorDe.setTitle("99Vouchers Generador de Fichas");
 		frmvouchersGeneradorDe.setResizable(false);
-		frmvouchersGeneradorDe.setBounds(100, 100, 568, 302);
+		frmvouchersGeneradorDe.setBounds(100, 100, 680, 480);
 		frmvouchersGeneradorDe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
 		
 		JPanel panel = new JPanel();
 		frmvouchersGeneradorDe.getContentPane().add(panel, BorderLayout.SOUTH);
+		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JPanel panel_3 = new JPanel();
+		FlowLayout flowLayout = (FlowLayout) panel_3.getLayout();
+		panel.add(panel_3);
+		
+		JLabel lblNewLabel = new JLabel("Tama\u00F1o en pixeles");
+		panel_3.add(lblNewLabel);
+		
+		JPanel panel_2 = new JPanel();
+		panel.add(panel_2);
+		
+		JLabel lblNewLabel_1 = new JLabel("Alto");
+		panel_2.add(lblNewLabel_1);
+		
+		JLabel cordY = new JLabel("CorY");
+		panel_2.add(cordY);
+		
+		JLabel lblNewLabel_3 = new JLabel("Ancho");
+		panel_2.add(lblNewLabel_3);
+		
+		JLabel cordX = new JLabel("CorX");
+		panel_2.add(cordX);
 		
 		JButton genV = new JButton("Generar Fichas");
+		genV.setAlignmentX(Component.CENTER_ALIGNMENT);
 		genV.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				selDIR();
@@ -84,13 +111,30 @@ public class gui {
 		frmvouchersGeneradorDe.getContentPane().add(panel_1, BorderLayout.NORTH);
 		
 		JLabel lblSEL = new JLabel(rdyI);
+		lblSEL.setForeground(Color.red);
 		JLabel lblCSV = new JLabel(rdyC);
+		lblCSV.setForeground(Color.red);
+		
+		JLabel wIcon = new JLabel(new ImageIcon());
 		
 		JButton loadIMG = new JButton("Cargar Plantilla");
 		loadIMG.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cargarIMG();
 				lblSEL.setText(rdyI);
+				lblSEL.setForeground(Color.BLUE);
+				try {
+					prevIMG = PngGen.imgGENP(archIMG);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				int ancho = prevIMG.getWidth();
+				int largo = prevIMG.getHeight();
+				cordX.setText(ancho+"");
+				cordY.setText(largo+"");
+				ImageIcon preICO = new ImageIcon(prevIMG);
+				wIcon.setIcon(preICO);
 				
 						
 			}
@@ -102,7 +146,7 @@ public class gui {
 			public void actionPerformed(ActionEvent e) {
 				cargarCSV();
 				lblCSV.setText(rdyC);
-				
+				lblCSV.setForeground(Color.blue);
 			}
 		});
 		
@@ -110,6 +154,11 @@ public class gui {
 		panel_1.add(lblSEL);
 		panel_1.add(loadCSV);
 		panel_1.add(lblCSV);
+		
+		JPanel visPREP = new JPanel();
+		frmvouchersGeneradorDe.getContentPane().add(visPREP, BorderLayout.CENTER);
+		
+		visPREP.add(wIcon);
 		
 		
 	}
