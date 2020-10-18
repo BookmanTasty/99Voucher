@@ -70,7 +70,7 @@ public class PngGen {
 	    	Font font = new Font(fuePER, Font.BOLD, fueTAM);
 	        BufferedImage bi = ImageIO.read(new File(imgFile));
 	        String dirPNG = salDir+"/";
-	        String outPng = "test" + j + ".png";
+	        String outPng = "voucher_" + j + ".png";
 	        Graphics g = bi.getGraphics();
 	        g.setFont(font);
 	        g.setColor(Color.BLACK);

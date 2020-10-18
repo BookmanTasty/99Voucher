@@ -56,6 +56,7 @@ public class gui {
 	int perCY = 300;
 	String fuePER = "Calibri";
 	int fueTAM = 62;
+	String archSAL = "ficha";
 	
 	
 	/**
@@ -345,9 +346,6 @@ public class gui {
 		
 		peTA.add(lblTAM);
 		
-		JLabel lblNewLabel_13 = new JLabel("\u00A0\u00A0");
-		MenuPER.add(lblNewLabel_13);
-		
 		JPanel perCO = new JPanel();
 		MenuPER.add(perCO);
 		
@@ -433,10 +431,10 @@ public class gui {
 			
 			
 			JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());	
-			jfc.setDialogTitle("Elija un directorio para guardar su archivo");
+			jfc.setDialogTitle("Elija un directorio para guardar sus archivos");
 			jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 			//jfc.setAcceptAllFileFilterUsed(false);
-			//FileNameExtensionFilter filtro = new FileNameExtensionFilter("Selecciona directorio", "PNG");
+			//FileNameExtensionFilter filtro = new FileNameExtensionFilter("Guardar archivos", "PNG");
 			//jfc.addChoosableFileFilter(filtro);
 			
 			int returnValue = jfc.showSaveDialog(null);
