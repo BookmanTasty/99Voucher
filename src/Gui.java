@@ -46,10 +46,6 @@ public class gui {
 	String rdyI = "No seleccionado"; 
 	String rdyC = "No seleccionado"; 
 	BufferedImage prevIMG;
-	private JTextField ingUX;
-	private JTextField ingUY;
-	private JTextField ingCX;
-	private JTextField ingCY;
 	int perUX = 270;
 	int perUY = 150;
 	int perCX = 270;
@@ -57,7 +53,8 @@ public class gui {
 	String fuePER = "Calibri";
 	int fueTAM = 62;
 	String archSAL = "ficha";
-	
+	int setX = 270;
+	int setY = 150; 
 	
 	/**
 	 * Launch the application.
@@ -161,6 +158,37 @@ public class gui {
 		JButton actuFICH = new JButton("Actualizar");
 		JComboBox fonSEL = new JComboBox(fuentes);
 		
+		JLabel upX = new JLabel(perUX+"");
+		JLabel upY = new JLabel(perUY+"");
+		JLabel cpX = new JLabel(perCX+"");
+		JLabel cpY = new JLabel(perCY+"");
+		
+		JButton setU = new JButton("Fijar");
+		setU.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				perUX = setX;
+				perUY = setY;
+				upX.setText(perUX+"");
+				upY.setText(perUY+"");
+				
+			}
+		});
+		setU.setEnabled(false);
+		
+		JButton setC = new JButton("Fijar");
+		setC.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				perCX = setX;
+				perCY = setY;
+				cpX.setText(perUX+"");
+				cpY.setText(perUY+"");
+				}
+		});
+		setC.setEnabled(false);
+		
+		
+		
 		JPanel MenuCarga = new JPanel();
 		frmvouchersGeneradorDe.getContentPane().add(MenuCarga, BorderLayout.NORTH);
 		
@@ -179,7 +207,8 @@ public class gui {
 					int coimgy = e.getY();
 					corRX.setText(coimgx+"");
 					corRY.setText(coimgy+"");
-					
+					setX = coimgx;
+					setY = coimgy;
 					
 				}
 					
@@ -206,10 +235,9 @@ public class gui {
 				wIcon.setIcon(preICO);
 				
 				//activamos el menu de edicion
-				ingUX.setEnabled(true);
-				ingUY.setEnabled(true);
-				ingCX.setEnabled(true);
-				ingCY.setEnabled(true);
+				
+				setU.setEnabled(true);
+				setC.setEnabled(true);
 				fonSEL.setEnabled(true);
 				actuFICH.setEnabled(true);
 				tamSEL.setEnabled(true);
@@ -255,23 +283,20 @@ public class gui {
 		JPanel perPU = new JPanel();
 		MenuPER.add(perPU);
 		
-		JLabel lblNewLabel_8 = new JLabel("X");
+		JLabel lblNewLabel_8 = new JLabel("X:");
 		perPU.add(lblNewLabel_8);
 		
-		ingUX = new JTextField();
-		ingUX.setEnabled(false);
-		ingUX.setText(perUX+"");
-		perPU.add(ingUX);
-		ingUX.setColumns(3);
 		
-		JLabel lblNewLabel_9 = new JLabel("Y");
+		perPU.add(upX);
+		
+		JLabel lblNewLabel_9 = new JLabel("Y:");
 		perPU.add(lblNewLabel_9);
 		
-		ingUY = new JTextField();
-		ingUY.setEnabled(false);
-		ingUY.setText(perUY+"");
-		perPU.add(ingUY);
-		ingUY.setColumns(3);
+		
+		perPU.add(upY);
+		
+	
+		perPU.add(setU);
 		
 		JLabel lblNewLabel_5 = new JLabel("\u00A0\u00A0Posici\u00F3n Contrase\u00F1a \u00A0\u00A0");
 		MenuPER.add(lblNewLabel_5);
@@ -279,23 +304,20 @@ public class gui {
 		JPanel perPC = new JPanel();
 		MenuPER.add(perPC);
 		
-		JLabel lblNewLabel_10 = new JLabel("X");
+		JLabel lblNewLabel_10 = new JLabel("X:");
 		perPC.add(lblNewLabel_10);
 		
-		ingCX = new JTextField();
-		ingCX.setEnabled(false);
-		ingCX.setText(perCX+"");
-		perPC.add(ingCX);
-		ingCX.setColumns(3);
+
+		perPC.add(cpX);
 		
-		JLabel lblNewLabel_11 = new JLabel("Y");
+		JLabel lblNewLabel_11 = new JLabel("Y:");
 		perPC.add(lblNewLabel_11);
 		
-		ingCY = new JTextField();
-		ingCY.setEnabled(false);
-		ingCY.setText(perCY+"");
-		perPC.add(ingCY);
-		ingCY.setColumns(3);
+	
+		perPC.add(cpY);
+		
+		
+		perPC.add(setC);
 		
 		JLabel lblNewLabel_6 = new JLabel("\u00A0\u00A0Fuente");
 		MenuPER.add(lblNewLabel_6);
@@ -354,11 +376,7 @@ public class gui {
 		actuFICH.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				perUX = Integer.parseInt(ingUX.getText());
-				perUY = Integer.parseInt(ingUY.getText());
-				perCX = Integer.parseInt(ingCX.getText());
-				perCY = Integer.parseInt(ingCY.getText());
-				
+
 				String fueTEM = fonSEL.getSelectedItem().toString();
 				String[] fueREC = fueTEM.split(",");
 				fuePER = fueREC[1].replace("name=", "");
@@ -379,6 +397,7 @@ public class gui {
 				ImageIcon preICO = new ImageIcon(prevIMG);
 				wIcon.setIcon(preICO);
 				 System.out.println(fuePER);
+				
 			}
 			
 		});
@@ -457,4 +476,12 @@ public class gui {
 		}
 		
 	}
+	
+	private void actualizaIMG() {
+	
+	
+	
+	
 	}
+	
+}
