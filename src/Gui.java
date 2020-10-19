@@ -132,60 +132,12 @@ public class gui {
 				
 			}
 		});
-		
-		JPanel panel = new JPanel();
-		MenuGEN.add(panel);
-		
-		JLabel lblNewLabel_7 = new JLabel("Posicion del cursor");
-		panel.add(lblNewLabel_7);
-		
-		JPanel panel_1 = new JPanel();
-		MenuGEN.add(panel_1);
-		
-		JLabel lblNewLabel_14 = new JLabel("X");
-		panel_1.add(lblNewLabel_14);
-		
-		JLabel corRX = new JLabel("0");
-		panel_1.add(corRX);
-		
-		JLabel lblNewLabel_16 = new JLabel("Y");
-		panel_1.add(lblNewLabel_16);
-		
-		JLabel corRY = new JLabel("0");
-		panel_1.add(corRY);
 		MenuGEN.add(genV);
-		
-		JButton actuFICH = new JButton("Actualizar");
 		JComboBox fonSEL = new JComboBox(fuentes);
 		
 		JLabel upX = new JLabel(perUX+"");
 		JLabel upY = new JLabel(perUY+"");
 		JLabel cpX = new JLabel(perCX+"");
-		JLabel cpY = new JLabel(perCY+"");
-		
-		JButton setU = new JButton("Fijar");
-		setU.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				perUX = setX;
-				perUY = setY;
-				upX.setText(perUX+"");
-				upY.setText(perUY+"");
-				
-			}
-		});
-		setU.setEnabled(false);
-		
-		JButton setC = new JButton("Fijar");
-		setC.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				perCX = setX;
-				perCY = setY;
-				cpX.setText(perUX+"");
-				cpY.setText(perUY+"");
-				}
-		});
-		setC.setEnabled(false);
 		
 		
 		
@@ -198,6 +150,24 @@ public class gui {
 		lblCSV.setForeground(Color.red);
 		JSlider tamSEL = new JSlider();
 		
+		
+		// definimos el menu de carga 
+		JSlider slUX = new JSlider();
+		slUX.setMaximum(500);
+		slUX.setValue(270);
+		slUX.setEnabled(false);
+		JSlider slUY = new JSlider();
+		slUY.setMaximum(500);
+		slUY.setValue(150);
+		slUY.setEnabled(false);
+		JSlider slCX = new JSlider();
+		slCX.setMaximum(500);
+		slCX.setValue(270);
+		JSlider slCY = new JSlider();
+		slCY.setMaximum(500);
+		slCY.setValue(300);
+		
+		
 		JLabel wIcon = new JLabel(new ImageIcon());
 		wIcon.addMouseListener(new MouseAdapter() {
 			@Override
@@ -209,7 +179,7 @@ public class gui {
 					corRY.setText(coimgy+"");
 					setX = coimgx;
 					setY = coimgy;
-					
+	
 				}
 					
 			}
@@ -236,11 +206,22 @@ public class gui {
 				
 				//activamos el menu de edicion
 				
-				setU.setEnabled(true);
-				setC.setEnabled(true);
+								
 				fonSEL.setEnabled(true);
-				actuFICH.setEnabled(true);
 				tamSEL.setEnabled(true);
+				slUX.setEnabled(true);
+				slUX.setMaximum(ancho);
+				slUY.setEnabled(true);
+				slUY.setMaximum(largo);
+				slCX.setEnabled(true);
+				slCX.setMaximum(ancho);
+				slCY.setEnabled(true);
+				slCY.setMaximum(largo);
+				
+				
+				
+				
+				
 				
 						
 			}
@@ -280,23 +261,58 @@ public class gui {
 		JLabel lblNewLabel_4 = new JLabel("\u00A0\u00A0Posici\u00F3n Usuario");
 		MenuPER.add(lblNewLabel_4);
 		
-		JPanel perPU = new JPanel();
-		MenuPER.add(perPU);
+		JPanel perPUX = new JPanel();
+		MenuPER.add(perPUX);
+		
+		
+		slUX.setPreferredSize(new Dimension(90, 26));
+		perPUX.add(slUX);
+		slUX.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e)throws  java.lang.NullPointerException {
+				perUX = slUX.getValue();
+				upX.setText(perUX+"");
+				if (archIMG != null) {
+					actualizaIMG();
+					ImageIcon preICO = new ImageIcon(prevIMG);
+					wIcon.setIcon(preICO);
+				}
+				
+				
+				
+			}
+		});
 		
 		JLabel lblNewLabel_8 = new JLabel("X:");
-		perPU.add(lblNewLabel_8);
+		perPUX.add(lblNewLabel_8);
 		
 		
-		perPU.add(upX);
+		perPUX.add(upX);
+		
+		JPanel perPUY = new JPanel();
+		MenuPER.add(perPUY);
+		
+		
+		slUY.setPreferredSize(new Dimension(90, 26));
+		perPUY.add(slUY);
+		slUY.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e)throws  java.lang.NullPointerException {
+				perUY = slUY.getValue();
+				upY.setText(perUY+"");
+				if (archIMG != null) {
+					actualizaIMG();
+					ImageIcon preICO = new ImageIcon(prevIMG);
+					wIcon.setIcon(preICO);
+				}
+				
+				
+				
+			}
+		});
 		
 		JLabel lblNewLabel_9 = new JLabel("Y:");
-		perPU.add(lblNewLabel_9);
+		perPUY.add(lblNewLabel_9);
 		
-		
-		perPU.add(upY);
-		
-	
-		perPU.add(setU);
+		perPUY.add(upY);
 		
 		JLabel lblNewLabel_5 = new JLabel("\u00A0\u00A0Posici\u00F3n Contrase\u00F1a \u00A0\u00A0");
 		MenuPER.add(lblNewLabel_5);
@@ -304,20 +320,57 @@ public class gui {
 		JPanel perPC = new JPanel();
 		MenuPER.add(perPC);
 		
+		
+		slCX.setEnabled(false);
+		slCX.setPreferredSize(new Dimension(90, 26));
+		slCX.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e)throws  java.lang.NullPointerException {
+				perCX = slCX.getValue();
+				cpX.setText(perCX+"");
+				if (archIMG != null) {
+					actualizaIMG();
+					ImageIcon preICO = new ImageIcon(prevIMG);
+					wIcon.setIcon(preICO);
+				}
+				
+				
+				
+			}
+		});
+		perPC.add(slCX);
+		
 		JLabel lblNewLabel_10 = new JLabel("X:");
 		perPC.add(lblNewLabel_10);
 		
 
 		perPC.add(cpX);
 		
+		JPanel panel_4 = new JPanel();
+		MenuPER.add(panel_4);
+		
+		
+		slCY.setEnabled(false);
+		slCY.setPreferredSize(new Dimension(90, 26));
+		slCY.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e)throws  java.lang.NullPointerException {
+				perCY = slCY.getValue();
+				upX.setText(perCY+"");
+				if (archIMG != null) {
+					actualizaIMG();
+					ImageIcon preICO = new ImageIcon(prevIMG);
+					wIcon.setIcon(preICO);
+				}
+				
+				
+				
+			}
+		});
+		panel_4.add(slCY);
+		
 		JLabel lblNewLabel_11 = new JLabel("Y:");
-		perPC.add(lblNewLabel_11);
-		
-	
-		perPC.add(cpY);
-		
-		
-		perPC.add(setC);
+		panel_4.add(lblNewLabel_11);
+		JLabel cpY = new JLabel(perCY+"");
+		panel_4.add(cpY);
 		
 		JLabel lblNewLabel_6 = new JLabel("\u00A0\u00A0Fuente");
 		MenuPER.add(lblNewLabel_6);
@@ -340,7 +393,25 @@ public class gui {
 			            isSelected, cellHasFocus);
 			   }
 			});
+		fonSEL.addActionListener (new ActionListener () {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				System.out.println("Rulea");
+				String fueTEM = fonSEL.getSelectedItem().toString();
+				String[] fueREC = fueTEM.split(",");
+				fuePER = fueREC[1].replace("name=", "");
+				if (archIMG != null) {
+					actualizaIMG();
+					ImageIcon preICO = new ImageIcon(prevIMG);
+					wIcon.setIcon(preICO);
+				}
+			}
+			
+		});
 		perFU.add(fonSEL);
+		
 		
 		JLabel lblNewLabel_12 = new JLabel("\u00A0\u00A0Tama\u00F1o");
 		MenuPER.add(lblNewLabel_12);
@@ -354,9 +425,16 @@ public class gui {
 		tamSEL.setEnabled(false);
 		tamSEL.setMaximum(99);
 		tamSEL.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
+			public void stateChanged(ChangeEvent e)throws  java.lang.NullPointerException {
 				fueTAM = tamSEL.getValue();
 				lblTAM.setText(fueTAM+"");
+				if (archIMG != null) {
+					actualizaIMG();
+					ImageIcon preICO = new ImageIcon(prevIMG);
+					wIcon.setIcon(preICO);
+				}
+				
+				
 				
 			}
 		});
@@ -370,38 +448,6 @@ public class gui {
 		
 		JPanel perCO = new JPanel();
 		MenuPER.add(perCO);
-		
-		
-		actuFICH.setEnabled(false);
-		actuFICH.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-
-				String fueTEM = fonSEL.getSelectedItem().toString();
-				String[] fueREC = fueTEM.split(",");
-				fuePER = fueREC[1].replace("name=", "");
-				
-				fueTAM = tamSEL.getValue();
-				
-				
-				try {
-					prevIMG = PngGen.imgGENP(archIMG, perUX, perUY, perCX, perCY, fuePER,fueTAM);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				int ancho = prevIMG.getWidth();
-				int largo = prevIMG.getHeight();
-				cordX.setText(ancho+"");
-				cordY.setText(largo+"");
-				ImageIcon preICO = new ImageIcon(prevIMG);
-				wIcon.setIcon(preICO);
-				 System.out.println(fuePER);
-				
-			}
-			
-		});
-		MenuPER.add(actuFICH);
 		
 		
 	}
@@ -479,7 +525,12 @@ public class gui {
 	
 	private void actualizaIMG() {
 	
-	
+		try {
+			prevIMG = PngGen.imgGENP(archIMG, perUX, perUY, perCX, perCY, fuePER, fueTAM);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	
 	
 	}
