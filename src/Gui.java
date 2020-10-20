@@ -175,8 +175,6 @@ public class gui {
 				if (prevIMG != null) {
 					int coimgx = e.getX();
 					int coimgy = e.getY();
-					corRX.setText(coimgx+"");
-					corRY.setText(coimgy+"");
 					setX = coimgx;
 					setY = coimgy;
 	
@@ -241,6 +239,7 @@ public class gui {
 		MenuCarga.add(lblSEL);
 		MenuCarga.add(loadCSV);
 		MenuCarga.add(lblCSV);
+		JLabel cpY = new JLabel(perCY+"");
 		
 		JPanel visPREP = new JPanel();
 		visPREP.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
@@ -354,7 +353,7 @@ public class gui {
 		slCY.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e)throws  java.lang.NullPointerException {
 				perCY = slCY.getValue();
-				upX.setText(perCY+"");
+				cpY.setText(perCY+"");
 				if (archIMG != null) {
 					actualizaIMG();
 					ImageIcon preICO = new ImageIcon(prevIMG);
@@ -369,7 +368,7 @@ public class gui {
 		
 		JLabel lblNewLabel_11 = new JLabel("Y:");
 		panel_4.add(lblNewLabel_11);
-		JLabel cpY = new JLabel(perCY+"");
+		
 		panel_4.add(cpY);
 		
 		JLabel lblNewLabel_6 = new JLabel("\u00A0\u00A0Fuente");
